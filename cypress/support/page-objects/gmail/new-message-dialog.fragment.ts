@@ -1,12 +1,12 @@
 /// <reference types="cypress-pipe" />
 /// <reference types="cypress" />
 
-import { FragmentObject } from '../../fragment-object'
-import { Selector } from '../../selector'
-import { StaticSelectors } from '../../static-selectors'
+import { FragmentObject } from '../fragment-object'
+import { Selector } from '../selector'
+import { StaticSelectors } from '../static-selectors'
 import { loggable } from 'cypress-pipe'
-import { wrappedEl } from '../../utils'
-const { ROLE_BUTTON_SELECTOR } = StaticSelectors
+import { firstWrappedEl } from '../utils'
+const { ROLE_BUTTON } = StaticSelectors
 
 type ChainableWrapElement = Cypress.Chainable<JQuery<HTMLElement>>
 
@@ -18,7 +18,7 @@ export class NewMessageDialogFragment extends FragmentObject {
   static readonly DIV_MESSAGE_BODY = new Selector('[aria-label="Тело письма"]')
 
   constructor() {
-    super('[aria-label="Новое сообщение"]');
+    super('[aria-label="Новое сообщение"]')
   }
 
   fillForm(to: string, from: string, message: string): this {
@@ -35,14 +35,12 @@ export class NewMessageDialogFragment extends FragmentObject {
     return this
   }
 
-  textAreaTo = (): ChainableWrapElement =>
-    this.wrap(NewMessageDialogFragment.TEXTAREA_TO)
+  textAreaTo = (): ChainableWrapElement => this.wrap(NewMessageDialogFragment.TEXTAREA_TO)
 
   inputSubject = (): ChainableWrapElement => this.wrap(NewMessageDialogFragment.INPUT_SUBJECT)
 
   messageBody = (): ChainableWrapElement => this.wrap(NewMessageDialogFragment.DIV_MESSAGE_BODY)
 
-  sendButton = (): ChainableWrapElement => this.wrap(ROLE_BUTTON_SELECTOR)
-    .contains(SEND)
-    .pipe(loggable(wrappedEl))
+  sendButton = (): ChainableWrapElement =>
+    this.wrap(ROLE_BUTTON).contains(SEND).pipe(loggable(firstWrappedEl))
 }

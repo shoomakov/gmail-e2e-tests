@@ -1,0 +1,36 @@
+{
+  "name": "gmail-e2e-tests",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open:local": "cross-env STAGE=local npx cypress open",
+    "open:dev": "cross-env STAGE=dev npx cypress open"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "shoomakov",
+  "license": "MIT",
+  "devDependencies": {
+    "@bahmutov/cypress-extends": "^1.1.0",
+    "@types/faker": "^5.1.7",
+    "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^6.8.0",
+    "cypress-commands": "^1.1.0",
+    "cypress-localstorage-commands": "^1.4.1",
+    "cypress-pipe": "^2.0.0",
+    "cypress-xpath": "^1.6.2",
+    "cyrillic-to-translit-js": "^3.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "faker": "^5.4.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
+  }
+}

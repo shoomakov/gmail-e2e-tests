@@ -1,0 +1,12 @@
+[
+  {
+    "name": "1P_JAR",
+    "value": "2021-03-19-09",
+    "path": "/",
+    "domain": ".google.com",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1618737436.861723,
+    "sameSite": true
+  }
+]

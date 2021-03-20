@@ -1,19 +1,17 @@
-/// <reference types="cypress-pipe" />
 /// <reference types="cypress" />
 
-import { FragmentObject } from '../../fragment-object'
-import { StaticSelectors } from '../../static-selectors'
+import { FragmentObject } from '../fragment-object'
+import { StaticSelectors } from '../static-selectors'
 import { loggable } from 'cypress-pipe'
 import { NewMessageDialogFragment } from './new-message-dialog.fragment'
-import { wrappedEl } from '../../utils'
+import { firstWrappedEl } from '../utils'
 
-
-const { ROLE_BUTTON_SELECTOR } = StaticSelectors
+const { ROLE_BUTTON } = StaticSelectors
 const WRITE = 'Написать'
 
 export class OpenDialogButtonFragment extends FragmentObject {
   constructor() {
-    super(ROLE_BUTTON_SELECTOR.getName());
+    super(ROLE_BUTTON.getName())
   }
 
   open(): NewMessageDialogFragment {
@@ -24,5 +22,5 @@ export class OpenDialogButtonFragment extends FragmentObject {
   }
 
   popupButton = (): Cypress.Chainable<JQuery<HTMLElement>> =>
-    this.wrap().contains(WRITE).pipe(loggable(wrappedEl))
+    this.wrap().contains(WRITE).pipe(loggable(firstWrappedEl))
 }

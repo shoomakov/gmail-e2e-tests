@@ -2,18 +2,18 @@
 
 import * as faker from 'faker/locale/ru'
 import CyrillicToTranslit from 'cyrillic-to-translit-js'
-import { UserInterface } from './user-interface'
+import { UserInterface } from './user.interface'
 
 const EMAIL_DOMAIN = 'maildrop.cc'
 
 export class UserModel implements UserInterface {
-  firstName: string
-  companyInn: string
-  companyName: string
-  email: string
-  lastName: string
-  password: string
-  phoneNumber: string
+  public firstName: string
+  public companyInn: string
+  public companyName: string
+  public email: string
+  public lastName: string
+  public password: string
+  public phoneNumber: string
 
   constructor() {
     this.firstName = faker.name.firstName(1)
@@ -23,15 +23,15 @@ export class UserModel implements UserInterface {
     this.email = this.createEmail()
 
     this.password = faker.internet.password()
-    this.phoneNumber = faker.phone.phoneNumber('098#######')
+    this.phoneNumber = faker.phone.phoneNumber('061#######')
   }
 
-  getNames(): string[] {
+  public getNames(): string[] {
     return Object.getOwnPropertyNames(this)
   }
 
-  createEmail(): string {
-    const translit = new CyrillicToTranslit({ preset: 'uk' })
+  protected createEmail(): string {
+    const translit = new CyrillicToTranslit({ preset: 'ru' })
     const first = translit.transform(this.firstName).toLowerCase()
     const last = translit.transform(this.lastName).toLowerCase()
 
@@ -43,5 +43,11 @@ export class UserModel implements UserInterface {
     })
 
     return `${first}_${last}.${n}@${EMAIL_DOMAIN}`
+  }
+
+  public createUsername(): string {
+    const [first] = this.email.split('@')
+
+    return first
   }
 }
